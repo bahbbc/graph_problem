@@ -1,5 +1,5 @@
 #read file
-graph <- read.csv('/home/barbara/workspace/graph-problem/edges.dat', header = TRUE, sep = ' ')
+graph <- read.csv('~/workspace/graph_challenge/edges.dat', header = TRUE, sep = ' ')
 
 #verify number of rows and columns
 rows <- sort(unique(graph$X48))
@@ -17,24 +17,32 @@ for(i in 1:dim(graph)[1]){
 
 distance <- rep(Inf, 100)
 distance[1] <- 0
+min_path <- distance
 names <- 1:100
-
 Q <- data.frame(names, distance)
 
-while(length(Q) > 1){
-  u <- extract_min(Q)
-  adjacents <- which(relational_matrix[u,] == 1, arr.ind = TRUE)
-  for(v in adjacents){
-    if(Q$distance[v] > Q$distance[u] + 1){
-      Q$distance[v] <- Q$distance[u] + 1
-      min_path[v] <- Q$distance[v]
+dijkstra <- function(Q, relational_matrix, min_path){
+  while(dim(Q)[1] > 1){
+    u <- extract_min(Q)
+    adjacents <- which(relational_matrix[u,] == 1, arr.ind = TRUE)
+    adjacents <- adjacents[adjacents %in% Q$name]
+    for(v in adjacents){
+      if(Q$distance[Q$name == v] > Q$distance[Q$name == u] + 1){
+        Q$distance[Q$name == v] <- Q$distance[Q$name == u] + 1
+        min_path[v] <- Q$distance[Q$name == v]
+      }
     }
+    Q <- Q[Q$name != u,]
   }
-  Q <- Q[Q$name[-u],]
+  min_path
 }
 
+real_min_path <- dijkstra(Q, relational_matrix, min_path)
+
+
+
 extract_min <- function(Q){
-  Q$name[Q$distance == min(Q$distance)]
+  Q$name[Q$distance == min(Q$distance)][1]
 }
 
 ####
@@ -55,33 +63,11 @@ for(i in 1:dim(graph)[1]){
 }
 
 relational_matrix
-min_path <- distance
 distance <- rep(Inf, 6)
-
+min_path <- distance
 distance[1] <- 0
 names <- 1:6
 
-
-
 Q <- data.frame(names, distance)
 
-while(length(Q) > 1){
-  u <- extract_min(Q)
-  adjacents <- which(relational_matrix[u,] == 1, arr.ind = TRUE) 
-  adjacents[adjacents %in% Q$name]
-  # tenho que excluir os adjacentes que já foram percorridos tbm =/
-  # tenho que nomear as colunas da relational_matrix
-  for(v in adjacents){
-    if(Q$distance[Q$name == v] > Q$distance[Q$name == u] + 1){
-      Q$distance[Q$name == v] <- Q$distance[Q$name == u] + 1
-      min_path[v] <- Q$distance[Q$name == v]
-    }
-  }
-  Q <- Q[Q$name[-u],]
-  relational_matrix[]
-}
-
-extract_min <- function(Q){
-  Q$name[Q$distance == min(Q$distance)]
-}
 
