@@ -21,7 +21,7 @@ The `graph.R` file has examples on how to use these functions. The first example
 
 ## To run the code
 
- - Open an R console in the same path the files are.
+ - Open an R console in the same path where the files are.
 
  - The examples are in the `graph.R` file. To run the distance function from the file in the given graph just type:
  `graph <- read.csv('edges.dat', header = TRUE, sep = ' ')`
