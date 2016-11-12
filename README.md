@@ -21,12 +21,21 @@ The `graph.R` file has examples on how to use these functions. The first example
 
 ## To run the code
 
- - Open an R console in the same path where the files are.
+  - Open an R console in the same path where the files are.
 
- - The examples are in the `graph.R` file. To run the distance function from the file in the given graph just type:
- `graph <- read.csv('edges.dat', header = TRUE, sep = ' ')`
+  - To run the examples from `graph.R` open a R console and run: `source('graph.R')`
+    - The first matrix will be the distance matrix from the given graph (edges.dat).
+    - The second matrix will be the centrality from the given graph (edges.dat).
 
- - To generate a graph using a matrix represetation you need to type:
+  - To run the code for a different graph just create a data frame with the edges like:
+  ```R
+    X48 <- c(1, 2, 2, 3, 4, 1, 4)
+    X64 <- c(2, 3, 4, 4, 5, 5, 6)
+
+    graph <- data.frame(X48, X64)
+  ```
+
+ - To generate a graph using a matrix representation you need to type:
  `final_matrix <- relational_matrix(graph)`
 
  - To calculate the distance from all nodes

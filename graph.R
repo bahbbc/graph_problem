@@ -11,10 +11,10 @@ graph <- read.csv('edges.dat', header = TRUE, sep = ' ')
 final_matrix <- relational_matrix(graph)
 
 #calculates the distance from all nodes
-final_distance_matrix <- generate_distance_matrix(final_matrix, data.frame())
+print(final_distance_matrix <- generate_distance_matrix(final_matrix, data.frame()))
 
 #calculates closeness centrality from all nodes
-closeness(final_distance_matrix)
+print(closeness(final_distance_matrix))
 
 ####
 # test 1 - Random graph
