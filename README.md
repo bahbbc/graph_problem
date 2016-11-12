@@ -27,7 +27,7 @@ The `graph.R` file has examples on how to use these functions. The first example
     - The first matrix will be the distance matrix from the given graph (edges.dat).
     - The second matrix will be the centrality from the given graph (edges.dat).
 
-  - To run the code for a different graph just create a data frame with the edges like:
+  - To run the code for a different graph just create a data frame with the edges, for example:
   ```R
     X48 <- c(1, 2, 2, 3, 4, 1, 4)
     X64 <- c(2, 3, 4, 4, 5, 5, 6)
